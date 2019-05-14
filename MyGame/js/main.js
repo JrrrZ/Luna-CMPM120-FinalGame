@@ -91,9 +91,11 @@ Play.prototype = {
 		background.scale.x = 2.7;
 		background.scale.y = 1.85;
 
+		// set physics
 		game.physics.startSystem(Phaser.Physics.P2JS);
 		game.physics.p2.defaultRestitution = 0.8;
 
+		// set up moon
 		moon = game.add.sprite(660, 480, 'moon');
 		moon.scale.setTo(0.5);
 		game.physics.p2.enable(moon, false);
@@ -103,11 +105,13 @@ Play.prototype = {
 		moon.body.data.shapes[0].sensor = true;
 		//moon.body.kinematic = true;
 	
+		// set up shiny star
 		for(var i = 0; i < 250; i++) {
 			this.stars = new Stars(game, 'star', 1);
 			game.add.existing(this.stars);
 		}
 
+		// set up broomstick
 		broomstick = game.add.sprite(300, 300, 'broomstick');
 		broomstick.scale.set(0.7);
 		game.physics.p2.enable(broomstick, false);
@@ -139,7 +143,7 @@ Play.prototype = {
 	update: function() {
 		// GamePlay logic
 
-
+		// Make mouse work
 		if(broomstick.input.isDragged) {      //BODY => follow pointer   
 			broomstick.animations.play('sweep');
 			if(broomstick.body != null) {	
@@ -151,7 +155,7 @@ Play.prototype = {
 			broomstick.animations.stop();
 		}
 
-
+		// go to next state
 		if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
 			lm.destroy();
 			game.state.start('GameOver');
