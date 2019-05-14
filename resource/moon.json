@@ -1,0 +1,56 @@
+{ 
+    
+    "moon": [
+        
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   2073, 1453  ,  2081, 1643  ,  2054, 1804  ,  1118, 2503  ,  1681, 794  ,  1855, 973  ,  1935, 1077  ,  2028, 1255  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   223, 1822  ,  187, 1636  ,  187, 1546  ,  780, 707  ,  730, 2416  ,  491, 2250  ,  380, 2122  ,  287, 1993  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   1855, 973  ,  1681, 794  ,  1810, 898  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   1387, 674  ,  1612, 755  ,  795, 2445  ,  730, 2416  ,  780, 707  ,  843, 685  ,  1051, 642  ,  1211, 640  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   1743, 2279  ,  1578, 2391  ,  1249, 2497  ,  1118, 2503  ,  2054, 1804  ,  2025, 1913  ,  1997, 1974  ,  1895, 2127  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   1249, 2497  ,  1578, 2391  ,  1418, 2459  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   1578, 2391  ,  1743, 2279  ,  1676, 2335  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   415, 972  ,  537, 854  ,  639, 780  ,  780, 707  ,  187, 1546  ,  217, 1330  ,  261, 1196  ,  302, 1112  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   491, 2250  ,  730, 2416  ,  582, 2329  ]
+        } ,
+        {
+            "density": 2, "friction": 0, "bounce": 0, 
+            "filter": { "categoryBits": 1, "maskBits": 65535 },
+            "shape": [   1006, 2496  ,  907, 2478  ,  795, 2445  ,  1612, 755  ,  1681, 794  ,  1118, 2503  ]
+        }
+    ]
+}
