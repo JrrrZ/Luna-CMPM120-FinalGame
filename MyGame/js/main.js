@@ -5,7 +5,9 @@ var broomstick;
 var stars;
 var lm;
 var flowstars;
-
+var StartWords;
+var EnterWords;
+var EndWords;
 
 // define game
 var game = new Phaser.Game(1200, 1050, Phaser.AUTO);
@@ -28,6 +30,7 @@ Loading.prototype = {
 		game.load.spritesheet('broomstick', 'assets/img/broomstick.png', 190, 310);
 		game.load.image('button', 'assets/img/snow.png');
 		game.load.image('moon', 'assets/img/moon.png')
+		// not work
 		game.load.physics('moon_physics', 'assets/img/moon.json', null, Phaser.Physics.LIME_CORONA_JSON);
 		// load audio
 		game.load.audio('lm', 'assets/audio/jr.mp3');
@@ -38,8 +41,11 @@ Loading.prototype = {
 		background = game.add.sprite(0, 0, 'load');
 		background.scale.setTo(0.75)
 
+		// create a button to go to the next state
 		button = game.add.button(100, 200, 'button', actionOnClick, this);
 		button.scale.setTo(0.08);
+
+		StartWords = game.add.text(18, 16, 'Press The Snow Button', { fontSize: '36px', fill: '#000' });
 	},
 	update: function() {
 		// main menu logic
@@ -62,6 +68,8 @@ MainMenu.prototype = {
 		background = game.add.sprite(0, 0, 'luna');
 		background.scale.x = 2.7;
 		background.scale.y = 1.85;
+
+		EnterWords = game.add.text(18, 16, 'Press Space To Begin\nPress Space To End', { fontSize: '36px', fill: '#fff' });
 	},
 	update: function() {
 		// main menu logic
@@ -176,6 +184,8 @@ GameOver.prototype = {
 		background = game.add.sprite(0, 0, 'luna');
 		background.scale.x = 2.7;
 		background.scale.y = 1.85;
+
+		EndWords = game.add.text(18, 16, 'Press Space To Restart', { fontSize: '36px', fill: '#fff' });
 	},
 	update: function() {
 		// GameOver logic
