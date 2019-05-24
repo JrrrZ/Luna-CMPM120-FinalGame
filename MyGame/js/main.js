@@ -3,11 +3,14 @@ var Time = 0;
 var text = null;
 var broomstick;
 var stars;
+var sweeping;
 var lm;
 var flowstars;
 var StartWords;
 var EnterWords;
 var EndWords;
+var SStar;
+var broomsweep;
 
 // define game
 var game = new Phaser.Game(1200, 1050, Phaser.AUTO);
@@ -34,6 +37,7 @@ Loading.prototype = {
 		game.load.physics('moon_physics', 'assets/img/moon.json', null, Phaser.Physics.LIME_CORONA_JSON);
 		// load audio
 		game.load.audio('lm', 'assets/audio/jr.mp3');
+		game.load.audio('sweeping', 'assets/audio/sweeping.mp3');
 
 	},
 	create: function() {
@@ -106,9 +110,14 @@ Play.prototype = {
 		//moon.body.kinematic = true;
 	
 		// set up shiny star
-		for(var i = 0; i < 250; i++) {
+		SStar = game.add.group();
+    	SStar.enableBody = true;
+    	SStar.physicsBodyType = Phaser.Physics.P2JS;
+		for(var i = 0; i < 600; i++) {
 			this.stars = new Stars(game, 'star', 1);
 			game.add.existing(this.stars);
+			game.physics.p2.setPostBroadphaseCallback(checkStar, this);
+			SStar.add(this.stars);
 		}
 
 		// set up broomstick
@@ -119,7 +128,7 @@ Play.prototype = {
 		broomstick.body.setCircle(24, -15, 58);
 		broomstick.body.kinematic = true;
 		broomstick.smoothed = false;
-		broomstick.animations.add('sweep', [0,1,2,3,4,5], 10, true);
+		broomsweep = broomstick.animations.add('sweep', [0,1,2,3,4,5], 10, true);
 
 		//  Input Enable the sprites
 		broomstick.inputEnabled = true;
@@ -136,7 +145,9 @@ Play.prototype = {
 
 		// looping music
 		lm = game.add.audio('lm');
+		sweeping = game.add.audio('sweeping');
 		lm.play('', 0, 0.6, true);	
+
 		
 	},
 	
@@ -146,6 +157,9 @@ Play.prototype = {
 		// Make mouse work
 		if(broomstick.input.isDragged) {      //BODY => follow pointer   
 			broomstick.animations.play('sweep');
+			if(broomstick.frame === 1) {
+				sweeping.play('', 0, 0.2, false);	
+			}
 			if(broomstick.body != null) {	
 				broomstick.body.x = game.input.activePointer.worldX;	
 				broomstick.body.y = game.input.activePointer.worldY;
@@ -161,18 +175,19 @@ Play.prototype = {
 			game.state.start('GameOver');
 		}
 
-		//game.physics.p2.setPostBroadphaseCallback(checkVegS, this);
+
+
+		//if (broomstick.anis.isPlaying() = true) {
+		//	console.log('Player is walking')
+		 // }
+		/*if(broomsweep.isPlaying) {
+			sweeping.play('', 0, 1, true);
+		}
+		else {
+			sweeping.destroy();
+		}*/
 	},
 }
-
-/*function checkVeg(body1, body2) {
-    if ((body1.sprite.name === 'star' && body2.sprite.name === 'moon') || (body2.sprite.name === 'star' && body1.sprite.name === 'moon')) {
-        return false;
-    } else if ((body1.sprite.name === 'broomstick' && body2.sprite.name === 'moon') || (body2.sprite.name === 'broomstick' && body1.sprite.name === 'moon')) {
-		return false;
-	}
-	return true;
-}*/
 
 // define GameOver state and methods
 var GameOver = function(game) {};
@@ -197,6 +212,13 @@ GameOver.prototype = {
 			game.state.start('Play');
 		}
 	}
+}
+
+function checkStar(body1, body2) {
+    if ((body1.sprite.name === 'star' && body2.sprite.name === 'star') || (body2.sprite.name === 'star' && body1.sprite.name === 'star')) {
+		return false;
+	}
+	return true;
 }
 
 
