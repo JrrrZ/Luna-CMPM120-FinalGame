@@ -1,6 +1,6 @@
 // define GamePlay state and methods
-Play = function(game) {};
-Play.prototype = {
+Play1 = function(game) {};
+Play1.prototype = {
 	init: function(Time) {
 		this.Time = Time;
 	},
@@ -31,7 +31,7 @@ Play.prototype = {
 		for(var i = 0; i < 600; i++) {
 			this.stars = new Stars(game, 'star', 1);
 			game.add.existing(this.stars);
-			game.physics.p2.setPostBroadphaseCallback(checkStar, this);
+			//game.physics.p2.setPostBroadphaseCallback(checkStar, this);
 			SStar.add(this.stars);
 		}
 
@@ -63,8 +63,23 @@ Play.prototype = {
 		sweeping = game.add.audio('sweeping');
 		lm.play('', 0, 0.6, true);	
 
-		
+		// set up in-game menu
+		menu = game.add.text(40, 40, 'Pause', { font: '24px Arial', fill: '#fff' });
+		menu.inputEnabled = true;
+		menu.events.onInputUp.add(function () {
+			// When the paus button is pressed, we pause the game
+			game.paused = true;
+			// Then add the menu
+			
+			// And a label to illustrate which menu item was chosen. (This is not necessary)
+			choiseLabel = game.add.text(600, 700, 'Click outside menu to continue', { font: '30px Arial', fill: '#000' });
+			choiseLabel.anchor.setTo(0.5, 0.5);
+		});
+		game.input.onDown.add(unpause, self);
+
+		game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
 	},
+
 	
 	update: function() {
 		// GamePlay logic
@@ -83,15 +98,19 @@ Play.prototype = {
 			broomstick.body.setZeroVelocity();
 			broomstick.animations.stop();
 		}
-
+        
 		// go to next state
 		if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
 			lm.destroy();
 			game.state.start('GameOver');
 		}
-
-
-
+		
+		if(Time > 5) {
+			if(game.input.keyboard.isDown(Phaser.Keyboard.D)) {
+				game.physics.p2.setPostBroadphaseCallback(checkStar, this);
+			}
+		}
+		
 		//if (broomstick.anis.isPlaying() = true) {
 		//	console.log('Player is walking')
 		 // }
@@ -109,4 +128,37 @@ function checkStar(body1, body2) {
 		return false;
 	}
 	return true;
+}
+
+// And finally the method that handels the pause menu
+function unpause(event){
+
+	var w = 1200;
+	var h = 1050;
+
+	// Only act if paused
+	if(game.paused){
+			// Calculate the corners of the menu
+			var x1 = w/2 - 270/2, x2 = w/2 + 270/2,
+					y1 = h/2 - 180/2, y2 = h/2 + 180/2;
+
+			// Check if the click was inside the menu
+			if(event.x > x1 && event.x < x2 && event.y > y1 && event.y < y2 ){
+					
+					// Display the choice
+					choiseLabel.text = 'You chose menu item: ' + choisemap[choise];
+			}
+			else{
+					// Remove the menu and the labe
+					choiseLabel.destroy();
+
+					// Unpause the game
+					game.paused = false;
+			}
+	}
+}
+
+// time function
+function updateTime() {
+	Time++;
 }

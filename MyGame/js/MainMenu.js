@@ -15,7 +15,7 @@ MainMenu.prototype = {
 	update: function() {
 		// main menu logic
 		if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-			game.state.start('Play');
+			game.state.start('Play1');
 		}
 	}
 }
