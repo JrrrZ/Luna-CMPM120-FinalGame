@@ -17,9 +17,9 @@ Play1.prototype = {
 		// set up moon
 		moon = game.add.sprite(660, 480, 'moon');
 		moon.scale.setTo(0.5);
-		game.physics.p2.enable(moon, false);
+		game.physics.p2.enable(moon, true);
 		moon.body.clearShapes();
-		moon.body.setCircle(468, 20, 55);
+		moon.body.setCircle(400, 20, 55);
 		//moon.body.loadPolygon('moon_physics', 'moon', 0.43);
 		moon.body.data.shapes[0].sensor = true;
 		//moon.body.kinematic = true;
@@ -31,6 +31,7 @@ Play1.prototype = {
 		for(var i = 0; i < 600; i++) {
 			this.stars = new Stars(game, 'star', 1);
 			game.add.existing(this.stars);
+			CheckPlay1[i] = this.stars;
 			//game.physics.p2.setPostBroadphaseCallback(checkStar, this);
 			SStar.add(this.stars);
 		}
@@ -58,6 +59,8 @@ Play1.prototype = {
 			game.add.existing(this.flowstars);
 		}
 
+		game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
+		
 		// looping music
 		lm = game.add.audio('lm');
 		sweeping = game.add.audio('sweeping');
@@ -76,6 +79,11 @@ Play1.prototype = {
 			choiseLabel.anchor.setTo(0.5, 0.5);
 		});
 		game.input.onDown.add(unpause, self);
+
+		timer = game.time.create(false);
+		timer.loop(2000, updateCounter, this);
+
+
 	},
 
 	
@@ -103,12 +111,14 @@ Play1.prototype = {
 			game.state.start('GameOver');
 		}
 		
-		if(point > 10) {
+		//if(point > 10) {
 			if(game.input.keyboard.isDown(Phaser.Keyboard.D)) {
 				game.physics.p2.setPostBroadphaseCallback(checkStar, this);
-				point -= 10;
+				console.log(Win());
+				console.log(count);
+				//point -= 10;
 			}
-		}
+		//}
 		
 		//if (broomstick.anis.isPlaying() = true) {
 		//	console.log('Player is walking')
@@ -121,13 +131,14 @@ Play1.prototype = {
 		}*/
 
 		// win condition
-		if(Math.pow(680-SStar.x, 2) + Math.pow(535-SStar.y, 2) < Math.pow(455, 2)) {
-			game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
-		} 
-
-		if(Time > 10){
-			button = game.add.button(100, 300, 'button', Win, this);
-			button.scale.setTo(0.08);
+		if(Time > 10) {
+			if(Win()){
+				timer.start();
+			}
+		}
+		if(count > 6) {
+			button = game.add.button(100, 300, 'button', Next, this);
+			button.scale.setTo(0.06);
 		}
 	},
 }
@@ -171,7 +182,24 @@ function unpause(event){
 function updateTime() {
 	Time++;
 }
+function updateCounter() {
+	count++;
+}
+
+function Next() {
+	Time = 0;
+	count = 0;
+	game.state.start('Play2')
+}
 
 function Win() {
-	game.state.start('MainMenu')
+	var j = 0;
+	while(CheckPlay1[j] != null) {
+		if(CheckPlay1[j].StarinPlay1 == true) {
+			j++;
+		} else {
+			return false;
+		}
+	}
+	return true;
 }

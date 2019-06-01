@@ -1,9 +1,12 @@
 var background;
 var Time = 0;
-var count;
+var count = 0;
+var timer;
 var text = null;
 var broomstick;
 var stars;
+var CheckPlay1 = [];
+var win = false;
 var sweeping;
 var lm;
 var flowstars;

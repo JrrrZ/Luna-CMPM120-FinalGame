@@ -19,6 +19,7 @@ function Stars(game, key, scale) {
     this.name = 'star';
     this.body.setCircle(13.5, 1.6, 4.2);
     this.count = 50;
+    this.StarinPlay1 = false;
 
     game.time.events.loop(Phaser.Timer.SECOND*6, updateCount, this);
 
@@ -39,16 +40,28 @@ Stars.prototype.update = function() {
             this.count -= 1;
         }
     }
-    
 
     // make stars fade and re-generate as going out the moon
     if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(468, 2)) {
         this.alpha = 0.6;
     } 
-    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(485, 2)) {
+    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(488, 2)) {
         this.kill();
         this.reset(game.rnd.integerInRange(380, 990),game.rnd.integerInRange(220, 820))
     }
+
+    // Play1
+    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(400, 2)) {
+        this.StarinPlay1 = false;
+    } else {
+        this.StarinPlay1 = true;
+    }
+
+
+
+
+
+
 }
 
 function updateCount() {
