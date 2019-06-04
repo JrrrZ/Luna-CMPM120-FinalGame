@@ -1,6 +1,6 @@
 // define GamePlay state and methods
-Play1 = function(game) {};
-Play1.prototype = {
+Play2 = function(game) {};
+Play2.prototype = {
 	init: function(Time) {
 		this.Time = Time;
 	},
@@ -17,9 +17,9 @@ Play1.prototype = {
 		// set up moon
 		moon = game.add.sprite(660, 480, 'moon');
 		moon.scale.setTo(0.5);
-		game.physics.p2.enable(moon, false);
+		game.physics.p2.enable(moon, true);
 		moon.body.clearShapes();
-		moon.body.setCircle(468, 20, 55);
+		moon.body.setCircle(400, 20, 55);
 		//moon.body.loadPolygon('moon_physics', 'moon', 0.43);
 		moon.body.data.shapes[0].sensor = true;
 		//moon.body.kinematic = true;
@@ -31,6 +31,7 @@ Play1.prototype = {
 		for(var i = 0; i < 600; i++) {
 			this.stars = new Stars(game, 'star', 1);
 			game.add.existing(this.stars);
+			CheckPlay2[i] = this.stars;
 			//game.physics.p2.setPostBroadphaseCallback(checkStar, this);
 			SStar.add(this.stars);
 		}
@@ -58,6 +59,8 @@ Play1.prototype = {
 			game.add.existing(this.flowstars);
 		}
 
+		game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
+		
 		// looping music
 		lm = game.add.audio('lm');
 		sweeping = game.add.audio('sweeping');
@@ -77,7 +80,10 @@ Play1.prototype = {
 		});
 		game.input.onDown.add(unpause, self);
 
-		game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
+		timer = game.time.create(false);
+		timer.loop(2000, updateCounter, this);
+
+
 	},
 
 	
@@ -98,16 +104,13 @@ Play1.prototype = {
 			broomstick.body.setZeroVelocity();
 			broomstick.animations.stop();
 		}
-        
-		// go to next state
-		if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-			lm.destroy();
-			game.state.start('GameOver');
-		}
 		
-		if(Time > 5) {
+		if(point > 10) {
 			if(game.input.keyboard.isDown(Phaser.Keyboard.D)) {
 				game.physics.p2.setPostBroadphaseCallback(checkStar, this);
+				console.log(Win2());
+				console.log(count);
+				point -= 10;
 			}
 		}
 		
@@ -120,45 +123,38 @@ Play1.prototype = {
 		else {
 			sweeping.destroy();
 		}*/
+
+		// win condition
+		if(Time > 10) {
+			if(Win2()){
+				timer.start();
+			} else {
+				count = 0;
+			}
+		}
+		if(count > 6) {
+			button = game.add.button(100, 300, 'button', Next2, this);
+			button.scale.setTo(0.06);
+		}
 	},
 }
 
-function checkStar(body1, body2) {
-    if ((body1.sprite.name === 'star' && body2.sprite.name === 'star') || (body2.sprite.name === 'star' && body1.sprite.name === 'star')) {
-		return false;
+function Next2() {
+	lm.destroy();
+	timer.destroy();
+	Time = 0;
+	count = 0;
+	game.state.start('Play3')
+}
+
+function Win2() {
+	var j = 0;
+	while(CheckPlay2[j] != null) {
+		if(CheckPlay2[j].StarinPlay2 == true) {
+			j++;
+		} else {
+			return false;
+		}
 	}
 	return true;
-}
-
-// And finally the method that handels the pause menu
-function unpause(event){
-
-	var w = 1200;
-	var h = 1050;
-
-	// Only act if paused
-	if(game.paused){
-			// Calculate the corners of the menu
-			var x1 = w/2 - 270/2, x2 = w/2 + 270/2,
-					y1 = h/2 - 180/2, y2 = h/2 + 180/2;
-
-			// Check if the click was inside the menu
-			if(event.x > x1 && event.x < x2 && event.y > y1 && event.y < y2 ){
-					
-					// Display the choice
-					choiseLabel.text = 'You chose menu item: ' + choisemap[choise];
-			}
-			else{
-					// Remove the menu and the labe
-					choiseLabel.destroy();
-
-					// Unpause the game
-					game.paused = false;
-			}
-	}
-}
-
-// time function
-function updateTime() {
-	Time++;
 }

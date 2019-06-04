@@ -18,10 +18,10 @@ function Stars(game, key, scale) {
 
     this.name = 'star';
     this.body.setCircle(13.5, 1.6, 4.2);
-    this.count = 50;
+    this.count = 1;
     this.StarinPlay1 = false;
 
-    game.time.events.loop(Phaser.Timer.SECOND*6, updateCount, this);
+    game.time.events.loop(Phaser.Timer.SECOND*3, updateCount, this);
 
 }
 
@@ -33,11 +33,13 @@ Stars.prototype.update = function() {
 
     cursors = game.input.keyboard.createCursorKeys(); //set the input as keyboard
 
-    if(this.count > 0) {
-        if(game.input.keyboard.justPressed(Phaser.Keyboard.S)) {            
-            this.body.setZeroVelocity();
-            console.log(this.count);
-            this.count -= 1;
+    if(Time > 5) {
+        if(this.count > 0) {
+            if(game.input.keyboard.justPressed(Phaser.Keyboard.S)) {            
+                this.body.setZeroVelocity();
+                console.log(this.count);
+                this.count -= 1;
+            }
         }
     }
 
@@ -47,16 +49,23 @@ Stars.prototype.update = function() {
     } 
     if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(488, 2)) {
         this.kill();
+        this.alpha = 1;
         this.reset(game.rnd.integerInRange(380, 990),game.rnd.integerInRange(220, 820))
     }
 
     // Play1
-    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(400, 2)) {
+    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(450, 2)) {
         this.StarinPlay1 = false;
     } else {
         this.StarinPlay1 = true;
     }
 
+    // Play2
+    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) < Math.pow(472, 2) && Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(400, 2)) {
+        this.StarinPlay2 = true;
+    } else {
+        this.StarinPlay2 = false;
+    }
 
 
 

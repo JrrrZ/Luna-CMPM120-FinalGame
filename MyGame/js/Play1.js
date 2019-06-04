@@ -16,14 +16,21 @@ Play1.prototype = {
 
 		// set up moon
 		moon = game.add.sprite(660, 480, 'moon');
+		moon.anchor.set(0.5);
 		moon.scale.setTo(0.5);
-		game.physics.p2.enable(moon, true);
+		game.physics.p2.enable(moon, false);
 		moon.body.clearShapes();
-		moon.body.setCircle(400, 20, 55);
+		moon.body.setCircle(430, 20, 55);
 		//moon.body.loadPolygon('moon_physics', 'moon', 0.43);
 		moon.body.data.shapes[0].sensor = true;
 		//moon.body.kinematic = true;
 	
+		/*moon2 = game.add.sprite(660, 480, 'moon2');
+		moon2.scale.setTo(0.74);
+		moon2.anchor.set(0.5);*/
+
+
+
 		// set up shiny star
 		SStar = game.add.group();
     	SStar.enableBody = true;
@@ -106,17 +113,17 @@ Play1.prototype = {
 		}
         
 		// go to next state
-		if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+		/*if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
 			lm.destroy();
 			game.state.start('GameOver');
-		}
+		}*/
 		
 		//if(point > 10) {
 			if(game.input.keyboard.isDown(Phaser.Keyboard.D)) {
 				game.physics.p2.setPostBroadphaseCallback(checkStar, this);
-				console.log(Win());
+				console.log(Win1());
 				console.log(count);
-				//point -= 10;
+				point -= 10;
 			}
 		//}
 		
@@ -132,67 +139,29 @@ Play1.prototype = {
 
 		// win condition
 		if(Time > 10) {
-			if(Win()){
+			if(Win1()){
 				timer.start();
+			} else {
+				count = 0;
 			}
 		}
 		if(count > 6) {
-			button = game.add.button(100, 300, 'button', Next, this);
+			button = game.add.button(100, 300, 'button', Next1, this);
 			button.scale.setTo(0.06);
 		}
 	},
 }
 
-function checkStar(body1, body2) {
-    if ((body1.sprite.name === 'star' && body2.sprite.name === 'star') || (body2.sprite.name === 'star' && body1.sprite.name === 'star')) {
-		return false;
-	}
-	return true;
-}
-
-// And finally the method that handels the pause menu
-function unpause(event){
-
-	var w = 1200;
-	var h = 1050;
-
-	// Only act if paused
-	if(game.paused){
-			// Calculate the corners of the menu
-			var x1 = w/2 - 270/2, x2 = w/2 + 270/2,
-					y1 = h/2 - 180/2, y2 = h/2 + 180/2;
-
-			// Check if the click was inside the menu
-			if(event.x > x1 && event.x < x2 && event.y > y1 && event.y < y2 ){
-					
-					// Display the choice
-					choiseLabel.text = 'You chose menu item: ' + choisemap[choise];
-			}
-			else{
-					// Remove the menu and the labe
-					choiseLabel.destroy();
-
-					// Unpause the game
-					game.paused = false;
-			}
-	}
-}
-
-// time function
-function updateTime() {
-	Time++;
-}
-function updateCounter() {
-	count++;
-}
-
-function Next() {
+function Next1() {
+	lm.destroy();
+	timer.destroy();
 	Time = 0;
 	count = 0;
+	point += 10;
 	game.state.start('Play2')
 }
 
-function Win() {
+function Win1() {
 	var j = 0;
 	while(CheckPlay1[j] != null) {
 		if(CheckPlay1[j].StarinPlay1 == true) {
