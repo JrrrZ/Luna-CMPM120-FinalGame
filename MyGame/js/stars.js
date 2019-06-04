@@ -8,12 +8,12 @@ function Stars(game, key, scale) {
 	//this.physicsBodyType = Phaser.Physics.P2JS;
     this.anchor.set(0.5);
     // scale image
-    this.scale.x = 0.7;
-    this.scale.y = 0.7;
+    this.scale.x = 0.13;
+    this.scale.y = 0.13;
 
     //
     game.physics.p2.enable(this, false);
-    this.animations.add('blink', [0,1], 3, true);
+    this.animations.add('blink', [0,1], game.rnd.integerInRange(3, 6), true);
     this.animations.play('blink');
 
     this.name = 'star';

@@ -11,7 +11,7 @@ Loading.prototype = {
 		game.load.image('luna2', 'assets/img/luna2.png');
 		game.load.image('load', 'assets/img/loading.png');
 		game.load.image('load1', 'assets/img/loading1.png');
-		game.load.spritesheet('star', 'assets/img/star.png', 96, 96);
+		game.load.spritesheet('star', 'assets/img/starsshine.png', 328, 389);
 		game.load.image('flowstar', 'assets/img/flowstar.png');
 		game.load.image('button', 'assets/img/snow.png');
 		game.load.spritesheet('broomstick', 'assets/img/broomstick.png', 190, 310);
@@ -20,6 +20,10 @@ Loading.prototype = {
 		game.load.image('moon2', 'assets/img/moon2.png')
 		game.load.spritesheet('p', 'assets/img/playspreadsheet.png', 234, 138);
 		game.load.spritesheet('i', 'assets/img/instructionspread.png', 460, 70);
+		game.load.spritesheet('c', 'assets/img/clickand drag soreadsheet.png', 460, 70);
+		game.load.spritesheet('s', 'assets/img/clickand drag soreadsheet.png', 650, 50);
+		game.load.spritesheet('d', 'assets/img/clickand drag soreadsheet.png', 460, 70);
+		game.load.spritesheet('q', 'assets/img/clickand drag soreadsheet.png', 460, 70);
 		// not work
 		game.load.physics('moon_physics', 'assets/img/moon.json', null, Phaser.Physics.LIME_CORONA_JSON);
 		// load audio
@@ -40,6 +44,7 @@ Loading.prototype = {
     	button.animations.play('s1');
 
 		//StartWords = game.add.text(18, 16, 'Press The Snow Button', { fontSize: '36px', fill: '#000' });
+
 	},
 	update: function() {
 		// main menu logic
