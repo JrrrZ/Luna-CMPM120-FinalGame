@@ -67,6 +67,7 @@ Stars.prototype.update = function() {
         this.StarinPlay2 = false;
     }
 
+    // Play3
 
 
 

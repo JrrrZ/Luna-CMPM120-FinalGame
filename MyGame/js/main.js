@@ -15,6 +15,8 @@ var PressD;
 var PressS;
 var PressQ;
 var Inst;
+var cnd;
+var ctb;
 var flowstars;
 var StartWords;
 var EnterWords;

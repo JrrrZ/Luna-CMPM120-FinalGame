@@ -20,10 +20,12 @@ Loading.prototype = {
 		game.load.image('moon2', 'assets/img/moon2.png')
 		game.load.spritesheet('p', 'assets/img/playspreadsheet.png', 234, 138);
 		game.load.spritesheet('i', 'assets/img/instructionspread.png', 460, 70);
-		game.load.spritesheet('c', 'assets/img/clickand drag soreadsheet.png', 460, 70);
-		game.load.spritesheet('s', 'assets/img/clickand drag soreadsheet.png', 650, 50);
-		game.load.spritesheet('d', 'assets/img/clickand drag soreadsheet.png', 460, 70);
-		game.load.spritesheet('q', 'assets/img/clickand drag soreadsheet.png', 460, 70);
+		game.load.spritesheet('c', 'assets/img/clickand drag soreadsheet.png', 650, 49);
+		game.load.spritesheet('s', 'assets/img/PressS.png', 455, 39);
+		game.load.spritesheet('d', 'assets/img/PressD.png', 636, 46);
+		game.load.spritesheet('q', 'assets/img/PressQ.png', 652, 48);
+		game.load.spritesheet('ib', 'assets/img/clicktoBEGIN.png', 614, 107);
+		game.load.spritesheet('b', 'assets/img/moonspin2.png', 600, 600);
 		// not work
 		game.load.physics('moon_physics', 'assets/img/moon.json', null, Phaser.Physics.LIME_CORONA_JSON);
 		// load audio
@@ -40,7 +42,7 @@ Loading.prototype = {
 		// create a button to go to the next state
 		button = game.add.button(760, 380, 'p', actionOnClick1, this);
 		button.scale.setTo(1);
-		button.animations.add('s1', [0,1,2], 2, true);
+		button.animations.add('s1', [0,1,2], 20, true);
     	button.animations.play('s1');
 
 		//StartWords = game.add.text(18, 16, 'Press The Snow Button', { fontSize: '36px', fill: '#000' });

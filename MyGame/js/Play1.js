@@ -6,9 +6,9 @@ Play1.prototype = {
 	},
 	create: function() {
 		console.log('Play: create');
-		background = game.add.sprite(0, 0, 'luna');
-		background.scale.x = 2.7;
-		background.scale.y = 1.85;
+		background = game.add.sprite(-200, -80, 'luna2');
+		background.scale.x = 1.9;
+		background.scale.y = 1.9;
 
 		// set physics
 		game.physics.startSystem(Phaser.Physics.P2JS);
@@ -118,14 +118,14 @@ Play1.prototype = {
 			game.state.start('GameOver');
 		}*/
 		
-		//if(point > 10) {
+		if(point > 10) {
 			if(game.input.keyboard.isDown(Phaser.Keyboard.D)) {
 				game.physics.p2.setPostBroadphaseCallback(checkStar, this);
 				console.log(Win1());
 				console.log(count);
 				point -= 10;
 			}
-		//}
+		}
 		
 		//if (broomstick.anis.isPlaying() = true) {
 		//	console.log('Player is walking')
@@ -148,6 +148,10 @@ Play1.prototype = {
 		if(count > 6) {
 			button = game.add.button(100, 300, 'button', Next1, this);
 			button.scale.setTo(0.06);
+		}
+
+		if(game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
+			game.state.start('Play2')
 		}
 	},
 }
