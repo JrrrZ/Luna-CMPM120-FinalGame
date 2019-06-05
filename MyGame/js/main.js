@@ -32,6 +32,8 @@ var MainMenu;
 var Play;
 var GameOver;
 var menu;
+var video;
+var v;
 
 // define game
 var game = new Phaser.Game(1200, 1050, Phaser.AUTO);

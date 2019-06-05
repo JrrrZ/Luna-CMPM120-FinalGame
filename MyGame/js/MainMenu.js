@@ -50,11 +50,21 @@ MainMenu.prototype = {
 		button.scale.setTo(0.225);
 		button.animations.add('s5', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17], 20, true);
 		button.animations.play('s5');
+
+		video = game.add.video('v');
+
+		v = video.addToWorld(game.world.centerX, game.world.centerY, 0.5, 0.5, 1.4, 1.5);
+		//v.visible = false;
+    	//  true = loop
+    	video.play(false);
 	},
 	update: function() {
 		// main menu logic
 		if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
 			game.state.start('Play1');
+		}
+		if(!video.playing) {
+			v.destroy();
 		}
 	}
 }

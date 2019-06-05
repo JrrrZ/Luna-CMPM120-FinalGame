@@ -26,6 +26,7 @@ Loading.prototype = {
 		game.load.spritesheet('q', 'assets/img/PressQ.png', 652, 48);
 		game.load.spritesheet('ib', 'assets/img/clicktoBEGIN.png', 614, 107);
 		game.load.spritesheet('b', 'assets/img/moonspin2.png', 600, 600);
+		game.load.video('v', 'assets/img/video.mp4');
 		// not work
 		game.load.physics('moon_physics', 'assets/img/moon.json', null, Phaser.Physics.LIME_CORONA_JSON);
 		// load audio
