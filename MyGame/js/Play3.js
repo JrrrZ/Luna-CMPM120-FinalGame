@@ -5,7 +5,7 @@ Play3.prototype = {
 		this.Time = Time;
 	},
 	create: function() {
-		console.log('Play: create');
+		console.log('Play3: create');
 		background = game.add.sprite(0, 0, 'luna');
 		background.scale.x = 2.7;
 		background.scale.y = 1.85;
@@ -19,7 +19,7 @@ Play3.prototype = {
 		moon.scale.setTo(0.5);
 		game.physics.p2.enable(moon, true);
 		moon.body.clearShapes();
-		moon.body.setCircle(475, 20, 55);
+		moon.body.setCircle(330, 158, 55);
 		//moon.body.loadPolygon('moon_physics', 'moon', 0.43);
 		moon.body.data.shapes[0].sensor = true;
 		//moon.body.kinematic = true;
@@ -137,7 +137,7 @@ Play3.prototype = {
 			}
 		}
 		if(count > 6) {
-			button = game.add.button(130, 800, 'button', Next1, this);
+			button = game.add.button(130, 800, 'button', Next3, this);
 			button.anchor.set(0.5);
 			button.scale.setTo(0.6);
 		}

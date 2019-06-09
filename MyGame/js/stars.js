@@ -68,10 +68,17 @@ Stars.prototype.update = function() {
     }
 
     // Play3
-    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) < Math.pow(480, 2) && Math.pow(768-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(380, 2)) {
+    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) < Math.pow(475, 2) && Math.pow(818-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(330, 2)) {
         this.StarinPlay3 = true;
     } else {
         this.StarinPlay3 = false;
+    }
+
+    // Play4
+    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) < Math.pow(475, 2) && Math.pow(542-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(330, 2)) {
+        this.StarinPlay4 = true;
+    } else {
+        this.StarinPlay4 = false;
     }
 
 

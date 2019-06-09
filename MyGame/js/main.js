@@ -24,20 +24,30 @@ var EnterWords;
 var EndWords;
 var SStar;
 var choiseLabel;
-var point;
+var point = 0;
 var pointer;
 var mousedown;
 var broomsweep;
 var Loading;
 var MainMenu;
-var Play;
+var Play1;
+var Play2;
+var Play3;
+var Play4;
 var GameOver;
+var Credit;
 var menu;
 var video;
 var v;
 var test;
 var cm;
 var ms;
+var credit;
+var zhb;
+var n;
+var df;
+var ec;
+var pop;
 
 // define game
 var game = new Phaser.Game(1200, 1050, Phaser.AUTO);
@@ -88,9 +98,11 @@ function updateCounter() {
 // add states to StateManager and start MainMenu
 game.state.add('Loading', Loading);
 game.state.add('MainMenu', MainMenu);
+game.state.add('Credit', Credit);
 game.state.add('Play1', Play1);
 game.state.add('Play2', Play2);
 game.state.add('Play3', Play3);
+game.state.add('Play4', Play4);
 game.state.add('GameOver', GameOver);
 game.state.start('Loading');
 

@@ -5,7 +5,7 @@ Play1.prototype = {
 		this.Time = Time;
 	},
 	create: function() {
-		console.log('Play: create');
+		console.log('Play1: create');
 		background = game.add.sprite(-200, -80, 'luna2');
 		background.scale.x = 1.9;
 		background.scale.y = 1.9;

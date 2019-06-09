@@ -1,11 +1,11 @@
 // define GamePlay state and methods
-Play2 = function(game) {};
-Play2.prototype = {
+Play4 = function(game) {};
+Play4.prototype = {
 	init: function(Time) {
 		this.Time = Time;
 	},
 	create: function() {
-		console.log('Play2: create');
+		console.log('Play4: create');
 		background = game.add.sprite(0, 0, 'luna');
 		background.scale.x = 2.7;
 		background.scale.y = 1.85;
@@ -19,7 +19,7 @@ Play2.prototype = {
 		moon.scale.setTo(0.5);
 		game.physics.p2.enable(moon, true);
 		moon.body.clearShapes();
-		moon.body.setCircle(400, 20, 55);
+		moon.body.setCircle(330, -118, 55);
 		//moon.body.loadPolygon('moon_physics', 'moon', 0.43);
 		moon.body.data.shapes[0].sensor = true;
 		//moon.body.kinematic = true;
@@ -31,7 +31,7 @@ Play2.prototype = {
 		for(var i = 0; i < 600; i++) {
 			this.stars = new Stars(game, 'star', 1);
 			game.add.existing(this.stars);
-			CheckPlay2[i] = this.stars;
+			CheckPlay4[i] = this.stars;
 			//game.physics.p2.setPostBroadphaseCallback(checkStar, this);
 			SStar.add(this.stars);
 		}
@@ -80,7 +80,7 @@ Play2.prototype = {
 			// And a label to illustrate which menu item was chosen.
 			cm = game.add.sprite(600, 700, 'cm');
 			cm.anchor.setTo(0.5);
-			cm.scale.setTo(1.1);
+			cm.scale.setTo(1.5);
 		});
 		game.input.onDown.add(unpause, self);
 
@@ -130,38 +130,38 @@ Play2.prototype = {
 
 		// win condition
 		if(Time > 10) {
-			if(Win2()){
+			if(Win4()){
 				timer.start();
 			} else {
 				count = 0;
 			}
 		}
 		if(count > 6) {
-			button = game.add.button(130, 800, 'button', Next2, this);
+			button = game.add.button(130, 800, 'button', Next4, this);
 			button.anchor.set(0.5);
 			button.scale.setTo(0.6);
 		}
 
 		if(game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
-			game.state.start('Play3')
+			game.state.start('GameOver')
 			console.log(point);
 		}
 
 	},
 }
 
-function Next2() {
+function Next4() {
 	timer.destroy();
 	Time = 0;
 	count = 0;
 	point += 10;
-	game.state.start('Play3')
+	game.state.start('GameOver')
 }
 
-function Win2() {
+function Win4() {
 	var j = 0;
-	while(CheckPlay2[j] != null) {
-		if(CheckPlay2[j].StarinPlay2 == true) {
+	while(CheckPlay4[j] != null) {
+		if(CheckPlay4[j].StarinPlay4 == true) {
 			j++;
 		} else {
 			return false;
