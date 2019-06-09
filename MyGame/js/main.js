@@ -8,6 +8,7 @@ var stars;
 var CheckPlay1 = [];
 var CheckPlay2 = [];
 var CheckPlay3 = [];
+var CheckPlay4 = [];
 var win = false;
 var sweeping;
 var lm;
@@ -34,6 +35,9 @@ var GameOver;
 var menu;
 var video;
 var v;
+var test;
+var cm;
+var ms;
 
 // define game
 var game = new Phaser.Game(1200, 1050, Phaser.AUTO);
@@ -61,11 +65,11 @@ function unpause(event){
 			if(event.x > x1 && event.x < x2 && event.y > y1 && event.y < y2 ){
 					
 					// Display the choice
-					choiseLabel.text = 'You chose menu item: ' + choisemap[choise];
+
 			}
 			else{
 					// Remove the menu and the labe
-					choiseLabel.destroy();
+					cm.destroy();
 
 					// Unpause the game
 					game.paused = false;
@@ -86,6 +90,7 @@ game.state.add('Loading', Loading);
 game.state.add('MainMenu', MainMenu);
 game.state.add('Play1', Play1);
 game.state.add('Play2', Play2);
+game.state.add('Play3', Play3);
 game.state.add('GameOver', GameOver);
 game.state.start('Loading');
 

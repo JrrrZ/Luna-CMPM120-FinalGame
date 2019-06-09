@@ -39,17 +39,21 @@ MainMenu.prototype = {
 		PressQ.animations.add('s7', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 20, true);
 		PressQ.animations.play('s7');
 
-		ctb = game.add.sprite(150, 650, 'ib');
+		ctb = game.add.sprite(150, 750, 'ib');
 		ctb.scale.set(0.8);
-		ctb.animations.add('s7', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 20, true);
-		ctb.animations.play('s7');
+		ctb.animations.add('s8', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 20, true);
+		ctb.animations.play('s8');
 
+		ms = game.add.sprite(65, 620, 'ms');
+		// looping music
+		lm = game.add.audio('lm');
+		lm.play('', 0, 0.6, true);	
 
-		button = game.add.button(950, 560, 'moon2', actionOnClick2, this);
+		/*button = game.add.button(950, 560, 'moon2', actionOnClick2, this);
 		button.anchor.set(0.5);
 		button.scale.setTo(0.225);
 		button.animations.add('s5', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17], 20, true);
-		button.animations.play('s5');
+		button.animations.play('s5');*/
 
 		video = game.add.video('v');
 
@@ -60,11 +64,13 @@ MainMenu.prototype = {
 	},
 	update: function() {
 		// main menu logic
-		if(game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-			game.state.start('Play1');
-		}
 		if(!video.playing) {
 			v.destroy();
+			button = game.add.button(950, 560, 'moon2', actionOnClick2, this);
+			button.anchor.set(0.5);
+			button.scale.setTo(0.225);
+			button.animations.add('s5', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17], 20, true);
+			button.animations.play('s5');
 		}
 	}
 }

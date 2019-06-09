@@ -47,7 +47,7 @@ Stars.prototype.update = function() {
     if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(468, 2)) {
         this.alpha = 0.6;
     } 
-    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(488, 2)) {
+    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(495, 2)) {
         this.kill();
         this.alpha = 1;
         this.reset(game.rnd.integerInRange(380, 990),game.rnd.integerInRange(220, 820))
@@ -61,13 +61,18 @@ Stars.prototype.update = function() {
     }
 
     // Play2
-    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) < Math.pow(472, 2) && Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(400, 2)) {
+    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) < Math.pow(480, 2) && Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(400, 2)) {
         this.StarinPlay2 = true;
     } else {
         this.StarinPlay2 = false;
     }
 
     // Play3
+    if(Math.pow(680-this.x, 2) + Math.pow(535-this.y, 2) < Math.pow(480, 2) && Math.pow(768-this.x, 2) + Math.pow(535-this.y, 2) > Math.pow(380, 2)) {
+        this.StarinPlay3 = true;
+    } else {
+        this.StarinPlay3 = false;
+    }
 
 
 

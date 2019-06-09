@@ -19,7 +19,7 @@ Play2.prototype = {
 		moon.scale.setTo(0.5);
 		game.physics.p2.enable(moon, true);
 		moon.body.clearShapes();
-		moon.body.setCircle(400, 20, 55);
+		moon.body.setCircle(475, 20, 55);
 		//moon.body.loadPolygon('moon_physics', 'moon', 0.43);
 		moon.body.data.shapes[0].sensor = true;
 		//moon.body.kinematic = true;
@@ -62,21 +62,25 @@ Play2.prototype = {
 		game.time.events.loop(Phaser.Timer.SECOND, updateTime, this);
 		
 		// looping music
-		lm = game.add.audio('lm');
+		//lm = game.add.audio('lm');
 		sweeping = game.add.audio('sweeping');
-		lm.play('', 0, 0.6, true);	
+		//lm.play('', 0, 0.6, true);	
 
 		// set up in-game menu
-		menu = game.add.text(40, 40, 'Pause', { font: '24px Arial', fill: '#fff' });
+		menu = game.add.sprite(20, 20, 'm');
+		menu.animations.add('s9', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19], 20, true);
+		menu.animations.play('s9');
+		menu.scale.setTo(0.9);
 		menu.inputEnabled = true;
 		menu.events.onInputUp.add(function () {
 			// When the paus button is pressed, we pause the game
 			game.paused = true;
 			// Then add the menu
 			
-			// And a label to illustrate which menu item was chosen. (This is not necessary)
-			choiseLabel = game.add.text(600, 700, 'Click outside menu to continue', { font: '30px Arial', fill: '#000' });
-			choiseLabel.anchor.setTo(0.5, 0.5);
+			// And a label to illustrate which menu item was chosen.
+			cm = game.add.sprite(600, 700, 'cm');
+			cm.anchor.setTo(0.5);
+			cm.scale.setTo(1.1);
 		});
 		game.input.onDown.add(unpause, self);
 
@@ -105,7 +109,7 @@ Play2.prototype = {
 			broomstick.animations.stop();
 		}
 		
-		if(point > 10) {
+		if(point >= 10) {
 			if(game.input.keyboard.isDown(Phaser.Keyboard.D)) {
 				game.physics.p2.setPostBroadphaseCallback(checkStar, this);
 				console.log(Win2());
@@ -133,17 +137,24 @@ Play2.prototype = {
 			}
 		}
 		if(count > 6) {
-			button = game.add.button(100, 300, 'button', Next2, this);
-			button.scale.setTo(0.06);
+			button = game.add.button(130, 800, 'button', Next1, this);
+			button.anchor.set(0.5);
+			button.scale.setTo(0.6);
 		}
+
+		if(game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
+			game.state.start('Play3')
+			console.log(point);
+		}
+
 	},
 }
 
 function Next2() {
-	lm.destroy();
 	timer.destroy();
 	Time = 0;
 	count = 0;
+	point += 10;
 	game.state.start('Play3')
 }
 
