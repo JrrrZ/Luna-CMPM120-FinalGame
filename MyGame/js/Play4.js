@@ -109,12 +109,11 @@ Play4.prototype = {
 			broomstick.animations.stop();
 		}
 		
-		if(point >= 10) {
+		if(point >= 30) {
 			if(game.input.keyboard.isDown(Phaser.Keyboard.D)) {
 				game.physics.p2.setPostBroadphaseCallback(checkStar, this);
 				console.log(Win2());
 				console.log(count);
-				point -= 10;
 			}
 		}
 		
@@ -143,7 +142,7 @@ Play4.prototype = {
 		}
 
 		if(game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
-			game.state.start('GameOver')
+			game.state.start('N4')
 			console.log(point);
 		}
 
@@ -155,7 +154,7 @@ function Next4() {
 	Time = 0;
 	count = 0;
 	point += 10;
-	game.state.start('GameOver')
+	game.state.start('N4')
 }
 
 function Win4() {

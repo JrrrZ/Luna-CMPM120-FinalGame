@@ -20,6 +20,7 @@ Loading.prototype = {
 		game.load.image('moon2', 'assets/img/moon2.png');
 		game.load.image('creditbk', 'assets/img/boitalk3.png');
 		game.load.image('bkmoon', 'assets/img/MoonBackground.png');
+		game.load.image('boytalk', 'assets/img/boitalk.png');
 		game.load.spritesheet('credit', 'assets/img/creditspread.png', 192, 68);
 		game.load.spritesheet('restart', 'assets/img/restart.png', 242, 68);
 		game.load.spritesheet('m', 'assets/img/menuspreadsheet.png', 168, 66);
@@ -37,6 +38,8 @@ Loading.prototype = {
 		game.load.spritesheet('df', 'assets/img/df.png', 447, 84);
 		game.load.spritesheet('ec', 'assets/img/ez.png', 329, 72);
 		game.load.spritesheet('n', 'assets/img/n.png', 478, 39);
+		game.load.spritesheet('reward', 'assets/img/reward.png', 498, 51);
+		game.load.spritesheet('sad', 'assets/img/sad.png', 700, 54);
 		game.load.video('v', 'assets/img/video.mp4');
 		// not work
 		game.load.physics('moon_physics', 'assets/img/moon.json', null, Phaser.Physics.LIME_CORONA_JSON);
@@ -72,9 +75,6 @@ Loading.prototype = {
         this.scale.pageAlignHorizontally = true;
         this.scale.pageAlignVertically = true;
 	
-		if(game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
-			game.state.start('GameOver')
-		}
 	}
 }
 

@@ -114,7 +114,6 @@ Play2.prototype = {
 				game.physics.p2.setPostBroadphaseCallback(checkStar, this);
 				console.log(Win2());
 				console.log(count);
-				point -= 10;
 			}
 		}
 		
@@ -143,7 +142,7 @@ Play2.prototype = {
 		}
 
 		if(game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
-			game.state.start('Play3')
+			game.state.start('N2')
 			console.log(point);
 		}
 
@@ -155,7 +154,7 @@ function Next2() {
 	Time = 0;
 	count = 0;
 	point += 10;
-	game.state.start('Play3')
+	game.state.start('N2')
 }
 
 function Win2() {

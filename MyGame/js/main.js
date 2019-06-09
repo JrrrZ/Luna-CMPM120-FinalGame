@@ -34,6 +34,10 @@ var Play1;
 var Play2;
 var Play3;
 var Play4;
+var Next1;
+var Next2;
+var Next3;
+var Next4;
 var GameOver;
 var Credit;
 var menu;
@@ -48,6 +52,9 @@ var n;
 var df;
 var ec;
 var pop;
+var reward;
+var sad;
+var debug = false;
 
 // define game
 var game = new Phaser.Game(1200, 1050, Phaser.AUTO);
@@ -103,6 +110,10 @@ game.state.add('Play1', Play1);
 game.state.add('Play2', Play2);
 game.state.add('Play3', Play3);
 game.state.add('Play4', Play4);
+game.state.add('N1', N1);
+game.state.add('N2', N2);
+game.state.add('N3', N3);
+game.state.add('N4', N4);
 game.state.add('GameOver', GameOver);
 game.state.start('Loading');
 

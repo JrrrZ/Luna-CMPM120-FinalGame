@@ -122,15 +122,6 @@ Play1.prototype = {
 			game.state.start('GameOver');
 		}*/
 		
-		//if(point >= 10) {
-			if(game.input.keyboard.isDown(Phaser.Keyboard.D)) {
-				game.physics.p2.setPostBroadphaseCallback(checkStar, this);
-				console.log(Win1());
-				console.log(count);
-				point -= 10;
-			}
-		//}
-		
 		//if (broomstick.anis.isPlaying() = true) {
 		//	console.log('Player is walking')
 		 // }
@@ -156,7 +147,7 @@ Play1.prototype = {
 		}
 
 		if(game.input.keyboard.isDown(Phaser.Keyboard.Q)) {
-			game.state.start('Play2')
+			game.state.start('N1')
 			console.log(point);
 		}
 	},
@@ -167,7 +158,7 @@ function Next1() {
 	Time = 0;
 	count = 0;
 	point += 10;
-	game.state.start('Play2')
+	game.state.start('N1')
 }
 
 function Win1() {
