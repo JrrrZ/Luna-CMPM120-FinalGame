@@ -21,6 +21,10 @@ Loading.prototype = {
 		game.load.image('creditbk', 'assets/img/boitalk3.png');
 		game.load.image('bkmoon', 'assets/img/MoonBackground.png');
 		game.load.image('boytalk', 'assets/img/boitalk.png');
+		game.load.image('m1', 'assets/img/m1.png');
+		game.load.image('m2', 'assets/img/m2.png');
+		game.load.image('m3', 'assets/img/m3.png');
+		game.load.image('m4', 'assets/img/m4.png');
 		game.load.spritesheet('credit', 'assets/img/creditspread.png', 192, 68);
 		game.load.spritesheet('restart', 'assets/img/restart.png', 242, 68);
 		game.load.spritesheet('m', 'assets/img/menuspreadsheet.png', 168, 66);

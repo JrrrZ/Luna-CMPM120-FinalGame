@@ -54,7 +54,11 @@ var ec;
 var pop;
 var reward;
 var sad;
-var debug = false;
+var m1;
+var m2;
+var m3;
+var m4;
+
 
 // define game
 var game = new Phaser.Game(1200, 1050, Phaser.AUTO);
@@ -64,34 +68,6 @@ function checkStar(body1, body2) {
 		return false;
 	}
 	return true;
-}
-
-// And finally the method that handels the pause menu
-function unpause(event){
-
-	var w = 1200;
-	var h = 1050;
-
-	// Only act if paused
-	if(game.paused){
-			// Calculate the corners of the menu
-			var x1 = w/2 - 270/2, x2 = w/2 + 270/2,
-					y1 = h/2 - 180/2, y2 = h/2 + 180/2;
-
-			// Check if the click was inside the menu
-			if(event.x > x1 && event.x < x2 && event.y > y1 && event.y < y2 ){
-					
-					// Display the choice
-
-			}
-			else{
-					// Remove the menu and the labe
-					cm.destroy();
-
-					// Unpause the game
-					game.paused = false;
-			}
-	}
 }
 
 // time function

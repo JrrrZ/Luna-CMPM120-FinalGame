@@ -17,7 +17,7 @@ Play2.prototype = {
 		// set up moon
 		moon = game.add.sprite(660, 480, 'moon');
 		moon.scale.setTo(0.5);
-		game.physics.p2.enable(moon, true);
+		game.physics.p2.enable(moon, false);
 		moon.body.clearShapes();
 		moon.body.setCircle(400, 20, 55);
 		//moon.body.loadPolygon('moon_physics', 'moon', 0.43);
@@ -76,13 +76,15 @@ Play2.prototype = {
 			// When the paus button is pressed, we pause the game
 			game.paused = true;
 			// Then add the menu
-			
+			m2 = game.add.sprite(600, 525, 'm2');
+			m2.anchor.setTo(0.5);
+			m2.scale.setTo(1);
 			// And a label to illustrate which menu item was chosen.
-			cm = game.add.sprite(600, 700, 'cm');
+			cm = game.add.sprite(600, 845, 'cm');
 			cm.anchor.setTo(0.5);
 			cm.scale.setTo(1.1);
 		});
-		game.input.onDown.add(unpause, self);
+		game.input.onDown.add(unpause2, self);
 
 		timer = game.time.create(false);
 		timer.loop(2000, updateCounter, this);
@@ -167,4 +169,32 @@ function Win2() {
 		}
 	}
 	return true;
+}
+
+// And finally the method that handels the pause menu
+function unpause2(event){
+
+	var w = 1200;
+	var h = 1050;
+
+	// Only act if paused
+	if(game.paused){
+			// Calculate the corners of the menu
+			var x1 = w/2 - 500/2, x2 = w/2 + 500/2,
+					y1 = h/2 - 500/2, y2 = h/2 + 500/2;
+
+			// Check if the click was inside the menu
+			if(event.x > x1 && event.x < x2 && event.y > y1 && event.y < y2 ){
+					
+					// Display the choice
+
+			}
+			else{
+					// Remove the menu and the labe
+					m2.destroy();
+					cm.destroy();
+					// Unpause the game
+					game.paused = false;
+			}
+	}
 }
